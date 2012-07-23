@@ -1,4 +1,4 @@
-as7-descriptionn-doc
+as7-description-doc
 ====================
 
-as7
+http://www.jmesnil.net/weblog/2012/07/23/as7-rest-management-api/
