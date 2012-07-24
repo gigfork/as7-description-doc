@@ -1,4 +1,4 @@
-<h4><a href="#{{ name | prepend:anchor }}" id="{{ name | prepend:anchor }}">{{ name  }}</a></h4>
+<h4><a href="#{{ name | prepend:base }}" id="{{ name | prepend:base }}">{{ name  }}</a></h4>
 <p>{{ attribute.description }}</p>
 <ul>
     {% assign type = attribute.type.TYPE_MODEL_VALUE %}
