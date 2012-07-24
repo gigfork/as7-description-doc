@@ -1,0 +1,13 @@
+#toc {
+ 	display: block !important;
+ 	position: fixed;
+	top: 0;
+	left: 113ex;
+	height: 100%;
+	width: 100%;
+}
+
+#main {
+	float: left;
+	max-width: 100ex;
+}

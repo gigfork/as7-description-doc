@@ -1,0 +1,34 @@
+<h4><a href="#{{ name | prepend:anchor }}" id="{{ name | prepend:anchor }}">{{ name  }}</a></h4>
+<p>{{ attribute.description }}</p>
+<ul>
+    {% assign type = attribute.type.TYPE_MODEL_VALUE %}
+    <li>type:{{ type }} 
+       {% if type == 'OBJECT' or type == 'LIST' %}
+       of {{ attribute.value-type.TYPE_MODEL_VALUE }} values
+       {% endif %}</li>
+    <li>required: {{ attribute.required }}
+    {% if attribute.nillable %}
+      <li>nillable: {{ attribute.nillable }}
+    {% endif %}
+    {% if attribute.access-type %}
+      <li>access-type: {{ attribute.access-type }}
+    {% endif %}
+    {% if attribute.storage %}
+      <li>storage: {{ attribute.storage }}
+    {% endif %}
+    {% if attribute.min-length %}
+      <li>min-length: {{ attribute.min-length }}
+    {% endif %}
+    {% if attribute.allowed %}
+      <li>allowed: {{ attribute.allowed | join:', ' }}
+    {% endif %}
+    {% if attribute.head-comment-allowed  %}
+      <li>head-comment-allowed : {{ attribute.head-comment-allowed | join:', ' }}
+    {% endif %}
+    {% if attribute.tail-comment-allowed  %}
+      <li>tail-comment-allowed : {{ attribute.tail-comment-allowed | join:', ' }}
+    {% endif %}
+</ul>
+{%comment %}
+<code>{{ attribute }}</code>
+{%endcomment %}

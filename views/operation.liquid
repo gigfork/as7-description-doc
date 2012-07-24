@@ -1,0 +1,15 @@
+<h4><a href="#{{  name | prepend:base  | append:'()' }}" id="{{ name | prepend:base  | append:'()' }}">{{ name  }}</a></h4>
+<p>{{ operation.description }}</p>
+<h5>Request properties</h5>
+  <ul>
+  {% for prop in operation.request-properties %}
+    <li>{{ prop[0] }}: {{ prop[1].description }}</li>
+    <ul><li>{{ prop[1].type.TYPE_MODEL_VALUE}}</li></ul>
+  {% endfor %}
+  </ul>
+<p>Returns {{ operation.reply-properties.description }}</p>
+<p>Returned type: {{ operation.reply-properties.type.TYPE_MODEL_VALUE }} </p>
+
+{%comment %}
+<p>{{ operation }}</p>
+{%endcomment %}
