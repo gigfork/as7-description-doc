@@ -1,4 +1,7 @@
-<h4><a href="#{{ name | prepend:base }}" id="{{ name | prepend:base }}">{{ name  }}</a></h4>
+<h4><a href="#{{ breadcrumb }}" id="{{ breadcrumb }}">{{ name  }} - {{ breadcrumb }}</a></h4>
+
+{% comment %}
+
 <p>{{ attribute.description }}</p>
 <ul>
     {% assign type = attribute.type.TYPE_MODEL_VALUE %}
@@ -29,6 +32,9 @@
       <li>tail-comment-allowed : {{ attribute.tail-comment-allowed | join:', ' }}
     {% endif %}
 </ul>
+
+{% endcomment %}
+
 {%comment %}
 <code>{{ attribute }}</code>
 {%endcomment %}

@@ -40,6 +40,7 @@ end
 
 
 Liquid::Template.register_filter(TextFilter)
+Liquid::Template.file_system = Liquid::LocalFileSystem.new("./views")
 
 get '/resource-description' do
   user = params['user']
@@ -67,43 +68,9 @@ get '/resource-description' do
    resource = result['result']
    out = Liquid::Template.parse(File.read('./views/header.liquid')).render
    out += generate_toc(resource)
-   out += generate_resource('root', resource, '')
-
-   if resource['children'] != nil
-    resource['children'].each { | k, v | out  += generate_children(k, v, 'root') }
-   end
-
+   out += Liquid::Template.parse(File.read('./views/root.liquid')).render('name' => 'root', 'root' => resource, 'base' => '')
    out += Liquid::Template.parse(File.read('./views/footer.liquid')).render
    out
-end
-
-def generate_resource(name, resource, base)
-   out = Liquid::Template.parse(File.read('./views/resource.liquid')).render('name' => name, 'resource' => resource, 'base' => base)
-
-   return "" unless resource
-
-   if resource['attributes'] != nil
-     out += "<h3>Attributes</h3>"
-     resource['attributes'].each { |k, v | out += Liquid::Template.parse(File.read('./views/attribute.liquid')).render('name' => k, 'attribute' => v, 'base' => "#{base}#{name}")}
-   end
-   if resource['operations'] != nil
-    out += "<h3>Operations</h3>"
-    resource['operations'].each { |k, v | out += Liquid::Template.parse(File.read('./views/operation.liquid')).render('name' => k, 'operation' => v, 'base' => "#{base}#{name}")}
-   end
-
-   if resource['children'] != nil
-     resource['children'].each { | k, v | out  += generate_children(k, v,  "#{base}#{name}") }
-   end
-
-   out.to_s
-end
-
-def generate_children(name, resource, base)
-   out = Liquid::Template.parse(File.read('./views/children.liquid')).render('name' => name, 'resource' => resource, 'base' => base)
-   if resource['model-description'] != nil
-     resource['model-description'].each { |k, v| out += generate_resource(k, v, "#{base}#{name}") }
-   end
-   out.to_s
 end
 
 get '/resource-description2' do
