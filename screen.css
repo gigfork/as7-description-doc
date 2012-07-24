@@ -1,0 +1,23 @@
+body {
+	font-family: monospace;
+	font-size: 14px;
+}
+
+#toc {
+ 	display: block !important;
+ 	position: relative;
+	top: 0;
+	left: 113ex;
+	height: 0;
+}
+
+#toc  ul {
+	background: #EEE;
+	list-style-type: none;
+	padding-left: 2ex;
+}
+
+#main {
+	float: left;
+	max-width: 100ex;
+}
