@@ -6,29 +6,44 @@
        {% if type == 'OBJECT' or type == 'LIST' %}
        of {{ attribute.value-type.TYPE_MODEL_VALUE }} values
        {% endif %}</li>
+    {% if attribute contains 'required' %}
     <li>required: {{ attribute.required }}
-    {% if attribute.nillable %}
+    {% endif %}
+    {% if attribute contains 'default' %}
+      <li>default: {{ attribute.default }}
+    {% endif %}
+    {% if attribute contains 'unit' %}
+      <li>unit: {{ attribute.unit }}
+    {% endif %}
+    {% if attribute contains 'nillable' %}
       <li>nillable: {{ attribute.nillable }}
     {% endif %}
-    {% if attribute.access-type %}
+    {% if attribute contains 'access-type' %}
       <li>access-type: {{ attribute.access-type }}
     {% endif %}
-    {% if attribute.storage %}
+    {% if attribute contains 'storage' %}
       <li>storage: {{ attribute.storage }}
     {% endif %}
-    {% if attribute.min-length %}
+    {% if attribute contains 'min-length' %}
       <li>min-length: {{ attribute.min-length }}
     {% endif %}
-    {% if attribute.allowed %}
+    {% if attribute contains 'max-length' %}
+      <li>max-length: {{ attribute.max-length }}
+    {% endif %}
+    {% if attribute contains 'allowed' %}
       <li>allowed: {{ attribute.allowed | join:', ' }}
     {% endif %}
-    {% if attribute.head-comment-allowed  %}
+    {% if attribute contains 'head-comment-allowed'  %}
       <li>head-comment-allowed : {{ attribute.head-comment-allowed | join:', ' }}
     {% endif %}
-    {% if attribute.tail-comment-allowed  %}
+    {% if attribute contains 'tail-comment-allowed'  %}
       <li>tail-comment-allowed : {{ attribute.tail-comment-allowed | join:', ' }}
     {% endif %}
+    {% if attribute contains 'restart-required'  %}
+      <li>restart-required: {{ attribute.restart-required }}
+    {% endif %}
 </ul>
-{%comment %}
+{% comment %}
 <code>{{ attribute }}</code>
-{%endcomment %}
+{% endcomment %}
+
